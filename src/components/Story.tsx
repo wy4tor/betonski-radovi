@@ -30,7 +30,7 @@ export default function Story() {
   return (
     <section ref={ref} className={`story ${reduce ? 'static' : ''}`} aria-label="Od pripreme terena do gotovog rezultata">
       <div className="story-frame">
-        {STAGES.map(s => <div key={s.n} className="story-img"><img src={`/images/i${String(s.n).padStart(2, '0')}.jpg`} alt={s.alt} loading="lazy" /></div>)}
+        {STAGES.map(s => <div key={s.n} className="story-img"><img src={`./images/i${String(s.n).padStart(2, '0')}.jpg`} alt={s.alt} loading="lazy" /></div>)}
         <div className="story-shade" />
       </div>
       <div className="story-texts">

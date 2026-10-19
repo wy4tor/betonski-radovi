@@ -12,11 +12,11 @@ export const NAV = [
   { href: '#kontakt', label: 'Kontakt' },
 ]
 export type Img = { src: string; alt: string; w: number; h: number }
-const img = (n: number, alt: string, w: number, h: number): Img => ({ src: `/images/i${String(n).padStart(2, '0')}.jpg`, alt, w, h })
+const img = (n: number, alt: string, w: number, h: number): Img => ({ src: `./images/i${String(n).padStart(2, '0')}.jpg`, alt, w, h })
 // Mapiranje slika (redosled slanja: slika 1–12; slika 13 je duplikat slike 5 i nije korišćena).
 export const IMAGES = {
   hero: img(2, 'Široka betonska površina ispred kuće', 720, 960),
-  heroVideo: '/video/hero.mp4',
+  heroVideo: './video/hero.mp4',
   background: img(9, 'Betonska površina u zalasku sunca', 1080, 1080),
   aboutA: img(1, 'Betonske stepenice i potporni zid', 528, 960),
   aboutB: img(7, 'Zakrivljena betonska staza sa stepenicama', 1350, 1800),
