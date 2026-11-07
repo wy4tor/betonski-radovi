@@ -9,6 +9,7 @@ import Counter from './components/Counter'
 import Lightbox from './components/Lightbox'
 import TextFill from './components/TextFill'
 import Story from './components/Story'
+import QuickContact from './components/QuickContact'
 import { useMotion } from './hooks/useMotion'
 
 const STEP_ICONS = [Phone, ClipboardList, Handshake, HardHat]
@@ -24,15 +25,33 @@ export default function App() {
       <main>
         <section id="pocetna" className="hero">
           <div className="layer hero-bg">
-            <video autoPlay muted loop playsInline preload="metadata" poster={IMAGES.hero.src} aria-hidden="true"><source src={IMAGES.heroVideo} type="video/mp4" /></video>
+            <video autoPlay muted loop playsInline preload="metadata" poster={IMAGES.hero.src} aria-hidden="true">
+              <source src={IMAGES.heroVideo} type="video/mp4" />
+            </video>
           </div>
           <div className="layer hero-shade" />
           <div className="layer hero-tex" />
           <div className="wrap hero-content">
-            <h1 aria-label="BETONIRANJE KOJE TRAJE.">{['BETONIRANJE','KOJE','TRAJE.'].map((w,wi)=><span key={w} className="hw" aria-hidden>{[...w].map((ch,i)=><span key={i} className="ch" style={{animationDelay:`${wi*260+i*40}ms`}}>{ch}</span>)} </span>)}</h1>
-            <p className="lead">Betoniranje dvorišta, prilaza, staza i drugih površina. Od manjih zahvata do velikih projekata – pravi pristup svakom poslu.</p>
-            <div className="row"><CallButton label={`POZOVITE: ${BUSINESS.phoneDisplay}`} size="lg" /><a href="#usluge" className="btn ghost">POGLEDAJTE USLUGE</a></div>
-            <p className="small glass">Betonski radovi širom Srbije | Direktan dogovor sa majstorom</p>
+            <h1 aria-label="Betonski Radovi Bojnik">
+              {['Betonski', 'Radovi', 'Bojnik'].map((w, wi) => (
+                <span key={w} className="hw" aria-hidden="true">
+                  {[...w].map((ch, i) => (
+                    <span key={i} className="ch" style={{ animationDelay: `${wi * 260 + i * 40}ms` }}>
+                      {ch}
+                    </span>
+                  ))}
+                  {' '}
+                </span>
+              ))}
+            </h1>
+            <p className="lead hero-bluf">
+              <strong>Betonski Radovi Bojnik</strong> je pouzdan majstorski tim specijalizovan za profesionalno betoniranje dvorišta, prilaza za vozila, staza, parkinga i betonskih platoa, uz precizno šalovanje, armiranje i završnu obradu. Radove izvodimo u opštini Bojnik, Leskovcu, Lebanu, Vlasotincu, Medveđi i širom celog Jablaničkog okruga. Pružamo direktan dogovor, besplatnu procenu i dugotrajna betonska rešenja.
+            </p>
+            <div className="row">
+              <CallButton label={`POZOVITE: ${BUSINESS.phoneDisplay}`} size="lg" />
+              <a href="#usluge" className="btn ghost">POGLEDAJTE USLUGE</a>
+            </div>
+            <p className="small glass">Bojnik • Leskovac • Lebane • Vlasotince • Jablanički okrug | Direktan dogovor sa majstorom</p>
           </div>
         </section>
 
@@ -58,9 +77,9 @@ export default function App() {
           <div className="wrap about">
             <div>
               <Reveal><h2><TextFill>OD MALIH RADOVA DO VELIKIH PROJEKATA</TextFill></h2></Reveal>
-              <Reveal delay={100}><p className="lead">Svaki posao počinje razgovorom i dogovorom. Manje betonske radove majstor obavlja samostalno, dok se za veće i zahtevnije projekte, nakon procene obima posla, organizuje odgovarajuća ekipa majstora.</p></Reveal>
+              <Reveal delay={100}><p className="lead">Svaki posao počinje razgovorom i dogovorom na licu mesta. Manje betonske radove u Bojniku i okolini majstor obavlja samostalno, dok se za veća dvorišta, prilaze i platoe u Leskovcu, Lebanu i celom Jablaničkom okrugu organizuje uigrana ekipa majstora.</p></Reveal>
               <ul className="points">
-                {[[Handshake, 'Direktan dogovor'], [Users, 'Individualni pristup'], [Ruler, 'Organizacija prema obimu radova'], [MapPin, 'Radovi širom Srbije']].map(([I, t], i) => {
+                {[[Handshake, 'Direktan dogovor sa majstorom'], [Users, 'Individualni pristup svakom dvorištu'], [Ruler, 'Šalovanje i armiranje po meri'], [MapPin, 'Pokriven ceo Jablanički okrug']].map(([I, t], i) => {
                   const Icon = I as typeof Phone
                   return <Reveal key={t as string} delay={i * 90}><li><Icon aria-hidden /> {t as string}</li></Reveal>
                 })}
@@ -106,8 +125,8 @@ export default function App() {
 
         <section className="sec">
           <div className="wrap area">
-            <Reveal><h2><TextFill>DOLAZIMO DO VAS</TextFill></h2></Reveal>
-            <Reveal delay={100}><p className="lead">Betonske radove izvodimo širom Srbije, osim Kosova i Metohije. Pozovite nas, opišite planirane radove i dogovorićemo mogućnosti izvođenja na vašoj lokaciji.</p></Reveal>
+            <Reveal><h2><TextFill>DOLAZIMO DO VAŠE LOKACIJE</TextFill></h2></Reveal>
+            <Reveal delay={100}><p className="lead">Betonske radove izvodimo u Bojniku, Leskovcu, Lebanu, Vlasotincu, Medveđi, Crnoj Travi i svim naseljima Jablaničkog okruga i južne Srbije. Pozovite nas, opišite planirane radove i dolazimo na vašu lokaciju radi besplatnog pregleda i tačne procene.</p></Reveal>
           </div>
         </section>
 
@@ -134,14 +153,20 @@ export default function App() {
 
       <footer className="foot">
         <div className="wrap foot-in">
-          <div><strong className="logo">{BUSINESS.name}</strong><p>Betonski radovi: dvorišta, prilazi, parking površine, staze i platoi.</p></div>
-          <div><p><a href={BUSINESS.phoneHref}>{BUSINESS.phoneDisplay}</a></p><p>Teritorija: {BUSINESS.territory}</p></div>
+          <div>
+            <strong className="logo">{BUSINESS.nameUpper}</strong>
+            <p>Profesionalni betonski radovi: dvorišta, prilazi, parking površine, staze i platoi u Bojniku, Leskovcu i Jablaničkom okrugu.</p>
+          </div>
+          <div>
+            <p><a href={BUSINESS.phoneHref}>{BUSINESS.phoneDisplay}</a></p>
+            <p>Lokacija: {BUSINESS.territory}</p>
+          </div>
           <nav aria-label="Navigacija u podnožju">{NAV.map(n => <a key={n.href} href={n.href}>{n.label}</a>)}</nav>
         </div>
         <p className="credit">{BUSINESS.credit}</p>
       </footer>
 
-      <a href={BUSINESS.phoneHref} className="btn mobile-call" aria-label={`Pozovite ${BUSINESS.phoneDisplay}`}><Phone size={20} aria-hidden /> POZOVITE MAJSTORA</a>
+      <QuickContact />
       <div className="cursor" aria-hidden />
       {lb !== null && <Lightbox items={GALLERY} index={lb} onClose={() => setLb(null)} onIndex={setLb} />}
     </>
