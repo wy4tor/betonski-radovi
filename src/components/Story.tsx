@@ -30,7 +30,7 @@ const STAGES = [
 
 export default function Story() {
   const ref = useRef<HTMLElement>(null)
-  const [reduce] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [reduce] = useState(() => typeof window !== 'undefined' && typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false)
   useEffect(() => {
     if (reduce) return
     const c = gsap.context(() => {
